@@ -291,6 +291,7 @@ Reload supervisord so that it finds the two new config files.
 * ``sudo supervisorctrl update``
 
 Start `geth`:
+
 * ``sudo supervisorctrl start geth``
 
 You'll want to wait for Go-Ethereum or Parity to fully sync with the network
