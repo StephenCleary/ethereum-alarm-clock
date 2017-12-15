@@ -136,6 +136,7 @@ steps should get an EC2 instance provisioned with the scheduler running.
 * Make sure that the security policy leaves `30303` open to connections from
   the outside world.
 
+In these instructions, replace `ubuntu` with your username.
 
 2. Provision the Server
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,14 +152,14 @@ The following comes from the `AWS Documentation`_ and will only work verbatim
 if your additional volume is ``/dev/xvdb``.
 
 
-* ``sudo mkfs -t ext4 /dev/xvdb``
+* ``sudo mkfs -t ext4 /dev/xvdb`` (skip if not using external volume)
 * ``sudo mkdir -p /data``
-* ``sudo mount /dev/xvdb /data``
+* ``sudo mount /dev/xvdb /data`` (skip if not using external volume)
 * ``sudo mkdir -p /data/ethereum``
 * ``sudo chown ubuntu /data/ethereum``
 
 Modify `/etc/fstab` to look like the following.  This ensures the extra volume
-will persist through restarts.
+will persist through restarts. (skip if not using external volume)
 
 .. code-block:: shell
 
@@ -203,7 +204,7 @@ Install the Alarm client.
 
 Supervisord will be used to manage both ``geth`` and ``eth_alarm``.
 
-If you are using Go-Ethereum, put the following in ``/etc/supervisord/conf.d/geth.conf``
+If you are using Go-Ethereum, put the following in ``/etc/supervisor/conf.d/geth.conf``
 
 .. code-block:: shell
 
@@ -215,7 +216,7 @@ If you are using Go-Ethereum, put the following in ``/etc/supervisord/conf.d/get
     autorestart=true
     autostart=false
 
-and the following in ``/etc/supervisord/conf.d/scheduler-v8.conf``
+and the following in ``/etc/supervisor/conf.d/scheduler-v8.conf``
 
 .. code-block:: shell
 
@@ -286,7 +287,11 @@ and Parity in
 
 Reload supervisord so that it finds the two new config files.
 
-* ``sudo supervisord reload``
+* ``sudo supervisorctrl reread``
+* ``sudo supervisorctrl update``
+
+Start `geth`:
+* ``sudo supervisorctrl start geth``
 
 You'll want to wait for Go-Ethereum or Parity to fully sync with the network
 before you start the ``scheduler-v8`` process.
@@ -300,6 +305,9 @@ You can monitor these processes with ``tail``
 * ``tail -f /var/log/supervisor/parity*.log``
 * ``tail -f /var/log/supervisor/scheduler-v8*.log``
 
+To attach to `geth` directly:
+
+* ``geth attach ipc:/data/ethereum/geth.ipc``
 
 10. System Clock
 ^^^^^^^^^^^^^^^^
