@@ -169,7 +169,7 @@ if your additional volume is ``/dev/sdc``.
 
 * ``sudo mkfs -t ext4 /dev/sdc`` (skip if not using external volume)
 * ``sudo mkdir -p /data``
-* ``sudo mount /dev/xvdb /sdc`` (skip if not using external volume)
+* ``sudo mount /dev/sdc /data`` (skip if not using external volume)
 * ``sudo mkdir -p /data/ethereum``
 * ``sudo chown ubuntu /data/ethereum``
 
