@@ -164,12 +164,12 @@ or
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following comes from the `AWS Documentation`_ and will only work verbatim
-if your additional volume is ``/dev/xvdb``.
+if your additional volume is ``/dev/sdc``.
 
 
-* ``sudo mkfs -t ext4 /dev/xvdb`` (skip if not using external volume)
+* ``sudo mkfs -t ext4 /dev/sdc`` (skip if not using external volume)
 * ``sudo mkdir -p /data``
-* ``sudo mount /dev/xvdb /data`` (skip if not using external volume)
+* ``sudo mount /dev/xvdb /sdc`` (skip if not using external volume)
 * ``sudo mkdir -p /data/ethereum``
 * ``sudo chown ubuntu /data/ethereum``
 
@@ -180,7 +180,7 @@ will persist through restarts. (skip if not using external volume)
 
     #/etc/fstab
     LABEL=cloudimg-rootfs   /        ext4   defaults,discard        0 0
-    /dev/xvdb       /data   ext4    defaults,nofail        0       2
+    /dev/sdc       /data   ext4    defaults,nofail        0       2
 
 Run ``sudo mount -a``  If you don't get any errors then you haven't borked your
 ``etc/fstab``
