@@ -287,12 +287,12 @@ and Parity in
 
 Reload supervisord so that it finds the two new config files.
 
-* ``sudo supervisorctrl reread``
-* ``sudo supervisorctrl update``
+* ``sudo supervisorctl reread``
+* ``sudo supervisorctl update``
 
 Start `geth`:
 
-* ``sudo supervisorctrl start geth``
+* ``sudo supervisorctl start geth``
 
 You'll want to wait for Go-Ethereum or Parity to fully sync with the network
 before you start the ``scheduler-v8`` process.
