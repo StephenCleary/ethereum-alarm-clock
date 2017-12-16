@@ -120,7 +120,9 @@ following.
 Running a server
 ----------------
 
-The scheduler runs nicely on the *small* AWS EC2 instance size.  The following
+In these instructions, replace `ubuntu` with your username.
+
+The scheduler runs nicely on the *small* AWS EC2 instance size (Standard A1 on Azure).  The following
 steps should get an EC2 instance provisioned with the scheduler running.
 
 1. Setup an EC2 Instance
@@ -136,7 +138,20 @@ steps should get an EC2 instance provisioned with the scheduler running.
 * Make sure that the security policy leaves `30303` open to connections from
   the outside world.
 
-In these instructions, replace `ubuntu` with your username.
+or
+
+1. Setup an Azure Instance
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Setup an Azure instance running Ubuntu.  Standard A1 works fine.
+* Add an extra volume to store your blockchain data.  20GB should be sufficient
+  for a short while (after April 2017) if storing the entire history,
+  block-for-block, is not required.  Otherwise, a much larger size should be
+  used.
+* Optionally mark this volume to persist past termination of the instance so
+  that you can reuse your blockchain data.
+* Make sure that the security policy leaves `30303` open to connections from
+  the outside world.
 
 2. Provision the Server
 ^^^^^^^^^^^^^^^^^^^^^^^
